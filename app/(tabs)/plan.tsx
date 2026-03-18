@@ -6,13 +6,13 @@ import { useProgress } from '../../hooks/useProgress';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DAYS: { key: keyof WeekPlan; short: string }[] = [
-  { key: 'sunday', short: 'Sø' },
-  { key: 'monday', short: 'Ma' },
-  { key: 'tuesday', short: 'Ti' },
-  { key: 'wednesday', short: 'On' },
-  { key: 'thursday', short: 'To' },
-  { key: 'friday', short: 'Fr' },
-  { key: 'saturday', short: 'Lø' },
+  { key: 'sunday', short: 'Sun' },
+  { key: 'monday', short: 'Mon' },
+  { key: 'tuesday', short: 'Tue' },
+  { key: 'wednesday', short: 'Wed' },
+  { key: 'thursday', short: 'Thu' },
+  { key: 'friday', short: 'Fri' },
+  { key: 'saturday', short: 'Sat' },
 ];
 
 
@@ -32,9 +32,9 @@ export default function PlanScreen() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Leseplan</Text>
+        <Text style={styles.headerTitle}>Reading Plan</Text>
         <View style={styles.overallProgress}>
-          <Text style={styles.overallLabel}>Totalt fullført: {totalPercent}%</Text>
+          <Text style={styles.overallLabel}>Total completed: {totalPercent}%</Text>
           <View style={styles.progressBar}>
             <View style={[styles.progressFill, { width: `${totalPercent}%` as any }]} />
           </View>
@@ -77,9 +77,9 @@ export default function PlanScreen() {
       {/* Week details */}
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.weekHeader}>
-          <Text style={styles.weekTitle}>Uke {selectedWeek}</Text>
+          <Text style={styles.weekTitle}>Week {selectedWeek}</Text>
           {selectedWeek === currentWeek && (
-            <View style={styles.currentBadge}><Text style={styles.currentBadgeText}>Denne uken</Text></View>
+            <View style={styles.currentBadge}><Text style={styles.currentBadgeText}>This week</Text></View>
           )}
         </View>
 

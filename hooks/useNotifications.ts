@@ -42,8 +42,8 @@ export async function scheduleDailyNotification(hour: number, minute: number) {
   await Notifications.cancelAllScheduledNotificationsAsync();
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: 'Tid for Bibellesing',
-      body: 'Din daglige bibellesing venter på deg.',
+      title: 'Time for Bible Reading',
+      body: 'Your daily Bible reading is waiting for you.',
       sound: true,
     },
     trigger: {

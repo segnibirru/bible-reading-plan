@@ -16,7 +16,7 @@ export default function RootLayout() {
             headerShown: true,
             headerStyle: { backgroundColor: '#1a1a2e' },
             headerTintColor: '#fff',
-            headerTitle: 'Bibeltekst',
+            headerTitle: 'Bible Text',
             presentation: 'modal',
           }}
         />

@@ -26,7 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'I dag',
+          title: 'Today',
           tabBarIcon: ({ color }) => (
             <TabIcon focused={false} color={color}>📅</TabIcon>
           ),
@@ -35,7 +35,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="plan"
         options={{
-          title: 'Leseplan',
+          title: 'Plan',
           tabBarIcon: ({ color }) => (
             <TabIcon focused={false} color={color}>📖</TabIcon>
           ),
@@ -44,7 +44,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Innstillinger',
+          title: 'Settings',
           tabBarIcon: ({ color }) => (
             <TabIcon focused={false} color={color}>⚙️</TabIcon>
           ),

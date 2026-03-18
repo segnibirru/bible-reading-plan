@@ -29,7 +29,7 @@ export default function SettingsScreen() {
     if (val) {
       const granted = await registerForPushNotifications();
       if (!granted) {
-        Alert.alert('Tillatelse nektet', 'Vennligst aktiver varslinger i telefoninnstillingene.');
+        Alert.alert('Permission denied', 'Please enable notifications in your phone settings.');
         return;
       }
       await scheduleDailyNotification(hour, minute);
@@ -58,30 +58,30 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Innstillinger</Text>
+          <Text style={styles.headerTitle}>Settings</Text>
         </View>
 
         {/* Progress card */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Din fremgang</Text>
+          <Text style={styles.cardTitle}>Your Progress</Text>
           <View style={styles.progressCircleRow}>
             <View style={styles.progressCircleWrap}>
               <View style={styles.progressCircle}>
                 <Text style={styles.progressCircleNum}>{totalPercent}%</Text>
-                <Text style={styles.progressCircleSub}>fullført</Text>
+                <Text style={styles.progressCircleSub}>completed</Text>
               </View>
             </View>
             <View style={styles.progressStats}>
               <View style={styles.statRow}>
-                <Text style={styles.statLabel}>Dager lest</Text>
+                <Text style={styles.statLabel}>Days read</Text>
                 <Text style={styles.statValue}>{Object.values(completed).filter(Boolean).length}</Text>
               </View>
               <View style={styles.statRow}>
-                <Text style={styles.statLabel}>Gjenstår</Text>
+                <Text style={styles.statLabel}>Remaining</Text>
                 <Text style={styles.statValue}>{364 - Object.values(completed).filter(Boolean).length}</Text>
               </View>
               <View style={styles.statRow}>
-                <Text style={styles.statLabel}>Totalt</Text>
+                <Text style={styles.statLabel}>Total</Text>
                 <Text style={styles.statValue}>364 dager</Text>
               </View>
             </View>
@@ -93,11 +93,11 @@ export default function SettingsScreen() {
 
         {/* Notifications */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Daglig påminnelse</Text>
-          <Text style={styles.cardSub}>Få en varsling når det er tid for bibellesing</Text>
+          <Text style={styles.cardTitle}>Daily Reminder</Text>
+          <Text style={styles.cardSub}>Get a notification when it's time for your Bible reading</Text>
 
           <View style={styles.switchRow}>
-            <Text style={styles.switchLabel}>Aktiver varsling</Text>
+            <Text style={styles.switchLabel}>Enable notifications</Text>
             <Switch
               value={notifEnabled}
               onValueChange={handleToggleNotif}
@@ -108,7 +108,7 @@ export default function SettingsScreen() {
 
           {notifEnabled && (
             <View style={styles.timePickerRow}>
-              <Text style={styles.timeLabel}>Tid:</Text>
+              <Text style={styles.timeLabel}>Time:</Text>
               <View style={styles.timePicker}>
                 <TouchableOpacity style={styles.timeBtn} onPress={() => changeHour(-1)}>
                   <Text style={styles.timeBtnText}>−</Text>
@@ -134,10 +134,10 @@ export default function SettingsScreen() {
 
         {/* About */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Om appen</Text>
-          <Text style={styles.aboutText}>52 ukers bibelleseplan basert på planen av Michael Coley.</Text>
-          <Text style={styles.aboutText}>Bibeltekst hentes fra bible-api.com (World English Bible).</Text>
-          <Text style={styles.version}>Versjon 1.0.0</Text>
+          <Text style={styles.cardTitle}>About</Text>
+          <Text style={styles.aboutText}>52-week Bible reading plan based on the plan by Michael Coley.</Text>
+          <Text style={styles.aboutText}>Bible text provided by bible-api.com (World English Bible).</Text>
+          <Text style={styles.version}>Version 1.0.0</Text>
         </View>
 
         <View style={{ height: 30 }} />

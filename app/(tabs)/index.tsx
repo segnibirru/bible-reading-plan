@@ -7,13 +7,13 @@ import { useProgress } from '../../hooks/useProgress';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DAYS: { key: keyof WeekPlan; name: string }[] = [
-  { key: 'sunday', name: 'Søndag' },
-  { key: 'monday', name: 'Mandag' },
-  { key: 'tuesday', name: 'Tirsdag' },
-  { key: 'wednesday', name: 'Onsdag' },
-  { key: 'thursday', name: 'Torsdag' },
-  { key: 'friday', name: 'Fredag' },
-  { key: 'saturday', name: 'Lørdag' },
+  { key: 'sunday', name: 'Sunday' },
+  { key: 'monday', name: 'Monday' },
+  { key: 'tuesday', name: 'Tuesday' },
+  { key: 'wednesday', name: 'Wednesday' },
+  { key: 'thursday', name: 'Thursday' },
+  { key: 'friday', name: 'Friday' },
+  { key: 'saturday', name: 'Saturday' },
 ];
 
 
@@ -35,18 +35,18 @@ export default function TodayScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.headerSub}>Uke {week} av 52</Text>
-          <Text style={styles.headerTitle}>Bibellesing</Text>
+          <Text style={styles.headerSub}>Week {week} of 52</Text>
+          <Text style={styles.headerTitle}>Bible Reading</Text>
           <Text style={styles.headerDate}>
-            {new Date().toLocaleDateString('nb-NO', { weekday: 'long', day: 'numeric', month: 'long' })}
+            {new Date().toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' })}
           </Text>
         </View>
 
         {/* Weekly progress bar */}
         <View style={styles.progressCard}>
           <View style={styles.progressRow}>
-            <Text style={styles.progressLabel}>Ukentlig fremgang</Text>
-            <Text style={styles.progressPercent}>{daysCompleted}/7 dager</Text>
+            <Text style={styles.progressLabel}>Weekly progress</Text>
+            <Text style={styles.progressPercent}>{daysCompleted}/7 days</Text>
           </View>
           <View style={styles.progressBar}>
             <View style={[styles.progressFill, { width: `${progressPercent}%` as any }]} />
@@ -56,7 +56,7 @@ export default function TodayScreen() {
         {/* Today's featured reading */}
         {todayReading && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Dagens lesing — {todayName}</Text>
+            <Text style={styles.sectionTitle}>Today's Reading — {todayName}</Text>
             <TouchableOpacity
               style={[styles.featuredCard, { borderLeftColor: DAY_COLORS[todayKey] }]}
               onPress={() => router.push(`/reading/${encodeURIComponent(todayReading.apiRef)}`)}
@@ -68,7 +68,7 @@ export default function TodayScreen() {
                   <Text style={styles.featuredRef}>{todayReading.reference}</Text>
                 </View>
                 <View style={[styles.readBadge, { backgroundColor: DAY_COLORS[todayKey] + '22' }]}>
-                  <Text style={[styles.readBadgeText, { color: DAY_COLORS[todayKey] }]}>Les nå →</Text>
+                  <Text style={[styles.readBadgeText, { color: DAY_COLORS[todayKey] }]}>Read now →</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -77,7 +77,7 @@ export default function TodayScreen() {
 
         {/* All days this week */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Hele uken</Text>
+          <Text style={styles.sectionTitle}>This Week</Text>
           {DAYS.map(({ key, name }) => {
             const reading = weekPlan?.[key] as any;
             if (!reading || typeof reading !== 'object' || !reading.reference) return null;
@@ -97,7 +97,7 @@ export default function TodayScreen() {
                     <Text style={styles.dayCategory}>{reading.label}</Text>
                     <Text style={styles.dayRef}>{reading.reference}</Text>
                   </View>
-                  {isToday && <View style={styles.todayBadge}><Text style={styles.todayBadgeText}>I dag</Text></View>}
+                  {isToday && <View style={styles.todayBadge}><Text style={styles.todayBadgeText}>Today</Text></View>}
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={[styles.checkBtn, done && styles.checkBtnDone, { borderColor: DAY_COLORS[key] }]}
